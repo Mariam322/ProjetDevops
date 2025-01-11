@@ -11,7 +11,7 @@ services:
       - SPRING_DATASOURCE_PASSWORD=root
     restart: unless-stopped
 
-    image: azizbenismail/kaddem:9
+    image: houssem52/spring:${DOCKER_TAG}
     depends_on:
       - dbmysql
 
@@ -27,7 +27,7 @@ services:
       - db:/var/lib/mysql
 
   angular-app:
-    image: houssem52/angular 
+    image: houssem52/angular:${DOCKER_TAG}
     container_name: angular-app
     ports:
       - "4200:80"  # Assurez-vous que les ports correspondent à ceux que vous utilisez dans votre application
