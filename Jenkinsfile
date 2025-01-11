@@ -45,11 +45,17 @@ DOCKER_TAG = getVersion()
                 }    
             }
         }
-        stage('Deploy'){
-            steps {
-                sh 'docker-compose down && docker-compose up -d'
-            }
+       stage('Deploy') {
+    steps {
+        script {
+            sh """
+            export DOCKER_TAG=${DOCKER_TAG}
+            docker-compose down
+            docker-compose up -d
+            """
         }
+    }
+}
     }
 }
 def getVersion(){
